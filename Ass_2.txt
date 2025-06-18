@@ -1,0 +1,67 @@
+Q1 .
+>db.res.find({'address.coord.0' : {$lt : -95.754168} },{name : 1 , _id : 0})
+
+Q2.
+>db.res.find({$and : 
+[   
+    
+    {cuisine :{$ne :/American/}},
+    {'grades.score' : {$gt : 70}},
+    {'address.coord.0' : {$lt : -65.754168}}
+
+]},{name : 1 , _id : 0})
+
+Q3.
+db.res.find(
+{
+    $and : [
+        {cuisine : {$not : /American/i}},
+        {'grades.score' : {$gt : 70}},
+        {'address.coord.1' : {$lt : -65.754168}}
+    ]
+},
+{name : 1 , _id : 0 })
+
+Q4
+db.res.find( {     name : /^Wil.*/i  }, {name : 1 , _id : 1 , boroigh : 1 , cuisine : 1})
+
+Q5.
+db.res.find({
+name : /.*Reg.*/i
+},
+{name : 1 , _id : 1 , boroigh : 1 , cuisine : 1})
+
+Q6
+db.res.find({
+$and : [
+    {borough : {$eq : "Bronx"}},
+    {cuisine : {$in :["American","Chinese"]}}
+]},
+{name : 1 , _id : 0})
+
+Q7
+db.res.find({
+$and : [
+    {borough : {$eq : "Bronx"}},
+    {cuisine : {$in :["American","Chinese"]}}
+]},
+{name : 1 , _id : 0})
+
+Q8
+db.res.find().sort({name : 1})
+
+Q9
+db.res.find().sort({name : -1})
+
+Q10
+db.res.find().sort({cuisine : 1},{Borough : -1})
+
+Q11
+db.res.find({'address.street' : {$exists:true}})
+
+Q12
+db.res.find({'greds.score' : {$gt : 90}},{name : 1 , _id : 0 })
+
+Q13
+db.res.find({$and : [{'grades.score' : {$gt : 80}},{'grades.score' : {$lt : 100}}]},{name : 1 , _id : 0 })
+
