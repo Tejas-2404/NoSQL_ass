@@ -1,0 +1,52 @@
+Q1.
+>db.res.find(
+    {
+    $and : [
+    {'grades.1.grade' : {$eq : "A"}},
+    {'grades.1.score' : {$eq : 9} },
+    {'grades.1.date' :  ISODate("2014-08-11T00:00:00Z")}
+    ]
+},
+{name : 1 , _id : 0 ,restaurant_Id : 1, 'grades' : 1 }
+)
+
+Q2.
+
+>db.res.find(
+    {'grades.score' : {$mod :[7,0]}},
+    {name : 1 ,restaurant_Id : 1 ,grades : 1 }
+    )
+
+Q3.
+
+>db.res.aggregate([
+    {$sort : {name : 1}},
+    {$project : {_id : 0}}
+])
+
+Q4.
+
+>db.res.aggregate([{$sort : {name : -1}}])
+
+Q5.
+
+>db.res.aggregate([
+    {$sort : {cuisine : 1 , borough : -1}}
+])
+
+Q6.
+
+>db.res.aggregate([
+    {$group :{_id : '_id' , count :{$sum : 1} } }
+])
+
+Q7.
+>db.res.aggregate([
+    {$group : {_id : '$boroughs'}}
+])
+
+Q8.
+>db.res.aggregate([
+    {$project : {name : 1 , borough : 1 }},
+    {$limit : 5}
+])
